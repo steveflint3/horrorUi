@@ -1,0 +1,82 @@
+@value denim, royal, mercury from '@styles/_colors.scss';
+
+.getStarted {
+  background: denim;
+  position: relative;
+  transform: translate(0);
+  width: 100vw;
+  z-index: -100;
+  &:before,
+  &:after {
+    background: denim;
+    content: '';
+    height: 300px;
+    position: absolute;
+    right: 50%;
+    top: 0;
+    transform: rotate(5deg);
+    transform-origin: top right;
+    width: 100vw;
+    z-index: -1;
+  }
+  &:after {
+    left: 50%;
+    transform: rotate(-5deg);
+    transform-origin: top left;
+  }
+}
+
+.tcb {
+  padding: 100px 0;
+  text-align: center;
+
+  .title {
+    color: mercury;
+    font-family: t1cg, Arial, Helvetica, sans-serif;
+    font-size: 30px;
+  }
+
+  p {
+    color: mercury;
+    font-family: t1cg, Arial, Helvetica, sans-serif;
+  }
+
+  button {
+    background: royal;
+    margin: 40px auto 0;
+    width: 180px;
+  }
+}
+
+.form {
+  display: block;
+  left: 50%;
+  max-width: 800px;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: calc(100% - 40px);
+  z-index: 100000;
+}
+
+.shade {
+  background: rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  left: 0;
+  perspective: 1px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100000;
+}
+
+.removePerspective {
+  // margin-right: 1em;
+  overflow: hidden;
+  perspective: none !important;
+  transform-style: flat;
+
+  nav {
+    // display: none;
+  }
+}

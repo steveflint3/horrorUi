@@ -1,0 +1,180 @@
+@value mercury, boulder, coal-mine, mountain-meadow from '@styles/_colors.scss';
+
+@for $i from 1 through 5 {
+  .advsCnslLi:nth-child(#{$i}) {
+    animation: liScaleShadow 2s #{($i) * 2}s 1 forwards, revertLiScaleShadow 1s 11s 1 forwards,
+      liScaleShadowEnd 2s #{10 + ($i) * 2}s 1 forwards;
+    background: mercury;
+    box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.2);
+    color: boulder;
+    height: 55px;
+    margin: 10px auto;
+    position: relative;
+    width: 325px;
+  }
+
+  .advsCnslLi:nth-child(#{$i}) .circle {
+    animation: circleColor 2s #{($i) * 2}s 1 forwards, revertCircleColor 1s 11s 1 forwards,
+      circleColorEnd 2s #{10 + ($i) * 2}s 1 forwards;
+    border: 2px solid boulder;
+    border-radius: 50%;
+    height: 20px;
+    left: 10px;
+    position: absolute;
+    top: 18px;
+    width: 20px;
+  }
+  .advsCnslLi:nth-child(#{$i}) .checkmark {
+    animation: checkmarkColor 2s #{($i) * 2}s 1 forwards, revertCheckmarkColor 1s 11s 1 forwards,
+      checkmarkColorEnd 2s #{10 + ($i) * 2}s 1 forwards;
+    border: 2px solid rgba(230, 230, 230, 0);
+    height: 10px;
+    margin-left: 5px;
+    margin-top: 1px;
+    transform: scaleX(-1) rotate(135deg);
+    width: 6px;
+  }
+
+  .advsCnslLi:nth-child(#{$i}) .text {
+    color: inherit;
+    display: block;
+    font-size: 14px;
+    padding-left: 40px;
+    padding-right: 20px;
+    @if ($i < 4) {
+      padding-top: 12px;
+    } @else {
+      padding-top: 20px;
+    }
+  }
+}
+
+@keyframes liScaleShadow {
+  0% {
+    color: boulder;
+  }
+  10% {
+    box-shadow: 0 20px 30px 3px rgba(0, 0, 0, 0.2);
+    color: coal-mine;
+    transform: translateY(-3px);
+  }
+  100% {
+    box-shadow: 0 20px 30px 3px rgba(0, 0, 0, 0.2);
+    color: coal-mine;
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes revertLiScaleShadow {
+  0% {
+    box-shadow: 0 20px 30px 3px rgba(0, 0, 0, 0.2);
+    color: coal-mine;
+    transform: translateY(-3px);
+  }
+  100% {
+    box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.2);
+    color: boulder;
+  }
+}
+
+@keyframes liScaleShadowEnd {
+  0% {
+    color: boulder;
+  }
+  10% {
+    box-shadow: 0 20px 30px 3px rgba(0, 0, 0, 0.2);
+    color: coal-mine;
+    transform: translateY(-3px);
+  }
+  100% {
+    box-shadow: 0 20px 30px 3px rgba(0, 0, 0, 0.2);
+    color: coal-mine;
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes checkmarkColor {
+  0% {
+    border: 2px solid rgba(230, 230, 230, 0);
+  }
+  10% {
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+  100% {
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+}
+
+@keyframes revertCheckmarkColor {
+  0% {
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+  100% {
+    border: 2px solid rgba(230, 230, 230, 0);
+  }
+}
+
+@keyframes checkmarkColorEnd {
+  0% {
+    border: 2px solid rgba(230, 230, 230, 0);
+  }
+  10% {
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+  100% {
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+}
+
+@keyframes circleColor {
+  0% {
+    border: 2px solid boulder;
+  }
+  10% {
+    border-bottom-color: mountain-meadow;
+    border-left-color: mountain-meadow;
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+  100% {
+    border-bottom-color: mountain-meadow;
+    border-left-color: mountain-meadow;
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+}
+
+@keyframes revertCircleColor {
+  0% {
+    border-bottom-color: mountain-meadow;
+    border-left-color: mountain-meadow;
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+  100% {
+    border: 2px solid boulder;
+  }
+}
+
+@keyframes circleColorEnd {
+  0% {
+    border: 2px solid boulder;
+  }
+  10% {
+    border-bottom-color: mountain-meadow;
+    border-left-color: mountain-meadow;
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+  100% {
+    border-bottom-color: mountain-meadow;
+    border-left-color: mountain-meadow;
+    border-right-color: mountain-meadow;
+    border-top-color: mountain-meadow;
+  }
+}

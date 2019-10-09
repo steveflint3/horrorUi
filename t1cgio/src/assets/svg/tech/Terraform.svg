@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 341.28">
+  <defs>
+    <style>
+      .terraform-1 {
+        fill: #5d4fe4;
+      }
+      .terraform-2 {
+        fill: #4242b2;
+      }
+    </style>
+  </defs>
+  <title>Terraform</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g id="Terraform">
+        <path class="terraform-1" d="M196.14,113.55V221.76l-93-53.71V59.89Z" />
+        <path class="terraform-1" d="M103,287.5V179.34l93.16,53.74v108.2Z" />
+        <path class="terraform-1" d="M0,0,92.92,53.62V161.79L0,108.16Z" />
+        <path class="terraform-2" d="M300,168.06l-92.88,53.59V113.54L300,59.9Z" />
+      </g>
+    </g>
+  </g>
+</svg>

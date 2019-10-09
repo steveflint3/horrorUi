@@ -1,0 +1,94 @@
+@value denim, cobalt, mercury from '@styles/_colors.scss';
+
+.justifyLeft {
+  padding: 0 20px 0 20px;
+  text-align: left;
+}
+
+.justifyRight {
+  text-align: right;
+}
+
+.justifyCenter {
+  text-align: center;
+}
+
+.titleText {
+  font-family: t1cg, Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 47px;
+}
+
+.blueTitleText {
+  color: denim;
+}
+
+.subtitleText {
+  font-family: t1cg, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: -11px;
+}
+
+.mercury {
+  color: mercury;
+}
+
+.lightBlueSubtitleText {
+  color: cobalt;
+}
+
+.grayContentText {
+  color: coal-mine;
+}
+
+.lightContentText {
+  color: mercury;
+}
+
+.dividerDark {
+  border: 0 solid denim;
+  border-bottom-width: 3px;
+}
+
+.dividerLight {
+  border: 0 solid mercury;
+  border-bottom-width: 3px;
+}
+
+.titlePadLarge {
+  padding-bottom: 50px;
+}
+
+.titlePadMedium {
+  padding-bottom: 30px;
+}
+
+.titlePadSmall {
+  padding-bottom: 20px;
+}
+
+.titlePadNone {
+  padding-bottom: unset;
+}
+
+.contentPadLarge {
+  padding-top: 50px;
+}
+
+.contentPadMedium {
+  padding-top: 30px;
+}
+
+.contentPadSmall {
+  padding-top: 20px;
+}
+
+.contentPadNone {
+  padding-top: unset;
+}
+
+.lineColorcobalt {
+  border-color: cobalt;
+}

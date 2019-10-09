@@ -1,0 +1,21 @@
+FROM node:9
+
+# Build the dist contents
+RUN mkdir -p /usr/src/io-rebuild/
+WORKDIR /usr/src/io-rebuild/
+COPY . /usr/src/io-rebuild/
+RUN npm install
+
+RUN npm run build
+
+FROM 269453212324.dkr.ecr.us-east-1.amazonaws.com/t1cg-registry:t1cg-webserver_latest
+
+RUN sed -ie "s/CONTAINER_PORT/4001/g" /etc/nginx/nginx.conf
+
+# Add the dist folder which hold the index.html
+COPY --from=0 /usr/src/io-rebuild/dist /usr/share/nginx/html/
+COPY --from=0 /usr/src/io-rebuild/dist /var/www/html/
+
+EXPOSE 4001
+
+CMD nginx -g 'daemon off;'

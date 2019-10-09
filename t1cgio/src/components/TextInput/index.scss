@@ -1,0 +1,71 @@
+@value klein, coal-mine, boulder, denim, royal, mercury, shiraz from '@styles/_colors.scss';
+@value bp-xs from '@styles/_breakpoints.scss';
+
+.barKlein {
+  [contentEditable='true'],
+  input {
+    border-bottom: 2px solid klein;
+  }
+}
+
+.barRoyal {
+  [contentEditable='true'],
+  input {
+    border-bottom: 2px solid royal;
+  }
+}
+
+.error {
+  [contentEditable='true'],
+  input {
+    border-bottom: 2px solid shiraz;
+  }
+  .errorText {
+    color: shiraz !important;
+    padding: 0 !important;
+  }
+}
+
+.labelRoyal {
+  p {
+    color: royal;
+  }
+}
+
+.labelDenim {
+  p {
+    color: denim;
+  }
+}
+
+.labelCoalMine {
+  p {
+    color: coal-mine;
+  }
+}
+
+.textinput {
+  label {
+    font-size: 14px;
+    padding: 0 0 0 3px;
+  }
+  [contentEditable='true'],
+  input {
+    border-width: 0 0 3px;
+    color: coal-mine;
+    font-size: 16px;
+    outline: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 3px;
+    width: 100%;
+  }
+  [contentEditable='true']:focus,
+  input:focus {
+    background-color: mercury;
+  }
+  [contentEditable='true']:empty:not(:focus):before {
+    color: boulder;
+    content: attr(data-text);
+  }
+}

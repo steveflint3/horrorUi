@@ -1,0 +1,52 @@
+@value colors: '@styles/_colors.scss';
+@value mercury, klein, alto, silver, royal, cobalt from colors;
+@value ie-only from '@styles/_breakpoints.scss';
+@value ie-only from '@styles/_breakpoints.scss';
+
+.center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.headerContent {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.headerTitle {
+  color: mercury;
+  font-family: t1cg, Arial, Helvetica, sans-serif;
+  font-size: 35px;
+  font-weight: 500;
+}
+
+.headerSubtitle {
+  color: mercury;
+  font-family: t1cg, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0 auto;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  // flex-direction: column;
+  // height: 800px;
+  // justify-content: space-around;
+}
+
+.subtitle {
+  h2 {
+    color: silver;
+    font-size: 40px;
+    font-weight: 400;
+    padding-bottom: 220px;
+  }
+}
+
+.logoContainer {
+  height: 277px;
+  width: 277px;
+}

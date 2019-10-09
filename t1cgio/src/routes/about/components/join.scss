@@ -1,0 +1,50 @@
+@value mercury, science, lochmara from '@styles/_colors.scss';
+@value bp-sm from '@styles/_breakpoints.scss';
+
+.join {
+  background: radial-gradient(circle farthest-side at 50% 50%, science 0%, lochmara 95%);
+  overflow: hidden;
+  width: 100%;
+}
+
+.text {
+  margin:30px;
+  h1, p {
+    color: mercury;
+    padding: 5px;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  p {
+    font-size: 15px;
+  }
+}
+
+.button {
+  left: 30px;
+  margin: 30px;
+}
+
+@media bp-sm {
+  .text {
+    float: left;
+    height: 100%;
+    margin: 0;
+    padding: 40px 100px 40px 200px;
+    width: 70%;
+    h1, p {
+      color: mercury;
+      padding: 5px;
+    }
+  }
+
+  .button {
+    float: right;
+    left: 0;
+    margin: 0;
+    position: relative;
+    top: 100px;
+    width: 30%;
+  }
+}

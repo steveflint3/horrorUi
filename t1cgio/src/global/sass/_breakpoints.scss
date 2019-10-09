@@ -1,0 +1,7 @@
+// These are classic bootstrap breakpoints, more can be added if needed
+@value bp-xs: only screen and (min-width: 576px);
+@value bp-sm: only screen and (min-width: 768px);
+@value bp-md: only screen and (min-width: 992px);
+@value bp-lg: only screen and (min-width: 1200px);
+
+@value ie-only: all and (-ms-high-contrast: none), (-ms-high-contrast: active);

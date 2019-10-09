@@ -1,0 +1,136 @@
+@value mercury, boulder, science, lochmara, silver, mountain-meadow, shiraz from '@styles/_colors.scss';
+@value bp-sm from '@styles/_breakpoints.scss';
+
+.contactForm {
+  background: mercury;
+  box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.2);
+  height: 650px;
+  overflow: hidden;
+  width: 100%;
+
+  @media bp-sm {
+    max-height: 500px;
+    max-width: 800px;
+    .blueBar {
+      float: left;
+      height: 100%;
+      width: 30%;
+      .barText {
+        padding: 0;
+        position: absolute;
+        h1 {
+          margin: 35px 0 10px 0;
+        }
+      }
+      .logoDiv {
+        display: inline;
+      }
+    }
+    .form {
+      background: mercury;
+      float: right;
+      height: 100%;
+      width: 70%;
+
+      button {
+        bottom: 0;
+        float: right;
+        margin: 0 20px 20px 0;
+        position: absolute;
+        right: 0;
+        width: 200px;
+      }
+    }
+  }
+}
+
+.close {
+  color: mercury;
+  cursor: pointer;
+  font-size: 30px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  z-index: 100;
+
+  @media bp-sm {
+    color: boulder;
+  }
+}
+
+.form {
+  background: mercury;
+  background-color: alto;
+  padding: 50px;
+  position: relative;
+  width: 100%;
+
+  .textinput {
+    margin: 10px 0 10px 0;
+  }
+
+  input {
+    background: mercury;
+  }
+  button {
+    margin: 10px 0 10px 0;
+    width: 100%;
+  }
+  h1 {
+    color: lochmara;
+    font-size: 20px;
+  }
+}
+
+.blueBar {
+  background: radial-gradient(circle farthest-side at 120% 50%, science 0%, lochmara 95%);
+  position: relative;
+  top: 0;
+  .barText {
+    left: 15%;
+    padding: 30px 0 30px 50px;
+    width: 70%;
+    h1,
+    p {
+      color: mercury;
+    }
+    h1 {
+      font-size: 25px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+  .logoDiv {
+    bottom: 0;
+    display: none;
+    left: 15%;
+    margin-bottom: 25px;
+    opacity: 0.5;
+    position: absolute;
+    width: 70%;
+    .logo {
+      fill: mercury;
+      float: left;
+      width: 30%;
+    }
+    .name {
+      color: mercury;
+      float: right;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 2px 2px 2px 5px;
+      width: 70%;
+    }
+  }
+}
+
+.success {
+  color: mountain-meadow !important;
+  padding: 0 !important;
+}
+
+.error {
+  color: shiraz !important;
+  padding: 0 !important;
+}

@@ -1,0 +1,129 @@
+@value mercury, coal-mine, denim, cobalt from '@styles/_colors.scss';
+@value bp-sm from '@styles/_breakpoints.scss';
+
+.aboutUs {
+  margin-top: 50px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.text {
+  float: left;
+  overflow: hidden;
+  padding: 30px;
+  width: 100%;
+  h1,
+  h2,
+  p {
+    padding: 5px 0;
+  }
+  h1 {
+    color: denim;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  h2 {
+    color: cobalt;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: -10px;
+  }
+  p {
+    color: coal-mine;
+    line-height: 25px;
+  }
+}
+
+.box {
+  display: none;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1180px) {
+  .text {
+    margin: 20px;
+  }
+  .content:nth-of-type(3) {
+    position: relative;
+    right: 100px;
+  }
+  .content:nth-of-type(4) {
+    transform: translateX(-200px);
+  }
+}
+
+@media bp-sm {
+  .aboutUs {
+    column-gap: 50px;
+    display: grid;
+    grid-row-gap: 50px;
+
+    grid-template-areas:
+      'text1 image1'
+      'image2 text2';
+    grid-template-columns: 50% 50%;
+    left: 50%;
+    margin-bottom: 150px;
+    max-width: 1080px;
+    overflow: visible;
+    position: relative;
+    transform: translateX(-50%);
+    width: 100%;
+
+    .content:nth-of-type(1) {
+      grid-area: text1;
+    }
+
+    .content:nth-of-type(2) {
+      grid-area: image1;
+    }
+
+    .content:nth-of-type(4) {
+      grid-area: image2;
+    }
+
+    .content:nth-of-type(3) {
+      grid-area: text2;
+      order: 4;
+    }
+    img {
+      width: 1000px;
+    }
+    .img2 {
+      overflow: hidden;
+      position: relative;
+      right: 475px;
+    }
+  }
+
+  .text {
+    margin-top: 50px;
+    padding: 0;
+  }
+
+  .box {
+    display: inline;
+    height: 200px;
+    position: absolute;
+    transform: translate(435px, -95px);
+    width: 200px;
+    z-index: 0;
+    .smallBox {
+      background-color: denim;
+      height: 90px;
+      position: absolute;
+      width: 90px;
+    }
+    .sBox2 {
+      right: 0;
+    }
+    .sBox3 {
+      bottom: 0;
+    }
+    .sBox4 {
+      bottom: 0;
+      right: 0;
+    }
+  }
+}

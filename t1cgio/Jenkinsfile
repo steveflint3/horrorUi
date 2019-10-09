@@ -1,0 +1,189 @@
+pipeline {
+  agent any
+  stages {
+    stage('Test NPM') {
+      when { expression { env.CHANGE_ID != null } }
+      steps {
+        script {
+          sendGhCheck('NPM Check', 'pending', 'Running npm tests...')
+          echo 'Running npm tests...'
+          sh "npm i"
+          def errfile = 'err.txt'
+          try {
+            sh "npm audit > ${errfile}"
+          } catch (err) {
+            def errmsg = readFile(errfile).trim()
+            if (errmsg.contains("found") && errmsg.contains("vulnerability")) {
+              echo "${errmsg}"
+              sendGhCheck('NPM Check', 'pending', 'Awaiting Approval...')
+              slackSend(channel: '#t1cg_io', color: 'warning', message: "*Please Complete* _NPM Audit Approval_\n\n*Approval Link:* ${HUDSON_URL}blue/organizations/jenkins/IO%2FPipeline/detail/$BRANCH_NAME/$BUILD_NUMBER/pipeline\n\n*NOTE:* For Audit Output See Step 7 `Print Message`\n\n*PR:* $CHANGE_URL\n\n<@U8W2EUJ0H>")
+              timeout(time: 5, unit: 'MINUTES') {
+                input "Do You Approve NPM Audit Results?"
+              }
+            } else {
+              currentBuild.result = 'FAILED'
+            }
+          }
+        }
+      }
+      post {
+        success {
+          script {
+            sendGhCheck('NPM Check', 'success', 'Passed')
+          }
+        }
+        failure {
+          script {
+            sendGhCheck('NPM Check', 'failure', 'Failed')
+          }
+        }
+      }
+    }
+    stage('Test UI-Lint') {
+      when { expression { env.CHANGE_ID != null } }
+      steps {
+        script {
+          sendGhCheck('Lint Check', 'pending', 'Running lint scripts...')
+        }
+        echo 'Running UI Linters...'
+        sh '''
+          npm run lint
+          npm run prettier
+          npm run lint-style
+        '''
+      }
+      post {
+        success {
+          script {
+            sendGhCheck('Lint Check', 'success', 'Passed')
+          }
+        }
+        failure {
+          script {
+            sendGhCheck('Lint Check', 'failure', 'Failed')
+          }
+        }
+      }
+    }
+    stage('Test TS') {
+      when { expression { env.CHANGE_ID != null } }
+      steps {
+        script {
+          sendGhCheck('TS Check', 'pending', 'Running type script...')
+        }
+        echo 'Running TS Test...'
+        sh '''
+          npm run type
+        '''
+      }
+      post {
+        success {
+          script {
+            sendGhCheck('TS Check', 'success', 'Passed')
+          }
+        }
+        failure {
+          script {
+            sendGhCheck('TS Check', 'failure', 'Failed')
+          }
+        }
+      }
+    }
+    stage('UNIT Tests') {
+      when { expression { env.CHANGE_ID != null } }
+      steps {
+        script {
+          sendGhCheck('Unit Tests', 'pending', 'Running unit-test script...')
+        }
+        echo 'Running Unit Tests...'
+        sh '''
+          npm test
+        '''
+      }
+      post {
+        success {
+          script {
+            sendGhCheck('Unit Tests', 'success', 'Passed')
+          }
+        }
+        failure {
+          script {
+            sendGhCheck('Unit Tests', 'failure', 'Failed')
+          }
+        }
+      }
+    }
+    stage('Lighthouse') {
+      when { expression { env.CHANGE_ID != null } }
+      steps {
+        script {
+          sendGhCheck('Lighthouse', 'pending', 'Running lighthouse script...')
+        }
+        echo 'Running Lighthouse...'
+        script {
+          try {
+            sh '''
+              wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+              sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+              sudo apt-get update
+              sudo apt-get install google-chrome-stable -y
+              npm run lighthouse
+            '''
+          } catch (err) {
+            if (err.getMessage() == 'script returned exit code 1') {
+              sendGhCheck('Lighthouse', 'pending', 'Awaiting Approval...')
+              slackSend(channel: '#t1cg_io', color: 'warning', message: "*Please Complete* _Lighthouse Approval_\n\n*Approval Link:* ${HUDSON_URL}blue/organizations/jenkins/IO%2FPipeline/detail/$BRANCH_NAME/$BUILD_NUMBER/pipeline\n\n*PR:* $CHANGE_URL\n\n<@U8W2EUJ0H>")
+              timeout(time: 5, unit: 'MINUTES') {
+                input "Do You Approve Lighthouse Results?"
+              }
+            } else {
+              currentBuild.result = 'FAILED'
+            }
+          }
+        }
+      }
+      post {
+        success {
+          script {
+            sendGhCheck('Lighthouse', 'success', 'Passed')
+          }
+        }
+        failure {
+          script {
+            sendGhCheck('Lighthouse', 'failure', 'Failed')
+          }
+        }
+      }
+    }
+    stage('Dev-Deploy') {
+      when { expression { env.CHANGE_ID != null } }
+      steps {
+        build job: '../UI', parameters: [
+          string(name: 'PASSED_COMMIT', value: String.valueOf(sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()))
+        ]
+      }
+    }
+    stage('Prod-Deploy') {
+      when { tag "v*" }
+      steps {
+        build job: '../UI-Production', parameters: [
+          string(name: 'PASSED_COMMIT', value: String.valueOf(sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()))
+        ]
+      }
+    }
+  }
+}
+
+def sendGhCheck(String context, String status, String description) {
+  def check_context = context
+  def check_status =  status
+  def check_description =  description
+  sh '''
+    set +x
+    target_url="${HUDSON_URL}blue/organizations/jenkins/IO%2FPipeline/detail/$BRANCH_NAME/$BUILD_NUMBER/pipeline"
+    curl -X POST \
+      -H 'Authorization: token 8e5534df338c15c5217e77463d28b15103baa380' \
+      -d '{"state":"'''+ check_status +'''","context":"'''+ check_context +'''","description":"'''+ check_description +'''","target_url":"'"$target_url"'"}' \
+      https://api.github.com/repos/t1cg/new-t1cg.io-2019/statuses/$(git rev-parse HEAD)
+  '''
+}

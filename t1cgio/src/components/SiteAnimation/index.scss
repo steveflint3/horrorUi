@@ -1,0 +1,86 @@
+@value denim from '@styles/_colors.scss';
+
+$shadowOpacity: 0.3;
+$shadowX: -20px;
+$shadowY: 30px;
+$shadowBlur: 40px;
+
+.container {
+  height: 650px;
+  margin: 0 auto;
+  max-width: 650px;
+  perspective: 400px;
+  position: relative;
+  width: 100%;
+}
+
+.wrapper {
+  left: 50%;
+  min-width: 200px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotateX(5deg) rotateY(15deg) rotateZ(-5deg);
+  width: 50%;
+}
+
+.animation {
+  background: rgb(217, 217, 217);
+  box-shadow: $shadowX $shadowY $shadowBlur rgba(0, 0, 0, $shadowOpacity);
+  height: 0;
+  left: 50%;
+  padding-top: 125%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  & > svg {
+    bottom: 0;
+    left: 0;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.square {
+  background: denim;
+  height: 12vw;
+  max-height: 70px;
+  max-width: 70px;
+  width: 12vw;
+}
+
+.square1 {
+  box-shadow: $shadowX $shadowY $shadowBlur rgba(0, 0, 0, $shadowOpacity);
+  left: 15%;
+  position: absolute;
+  top: 15%;
+  transform: rotateX(5deg) rotateY(10deg) rotateZ(-5deg);
+}
+
+.square2 {
+  box-shadow: $shadowX $shadowY $shadowBlur rgba(0, 0, 0, $shadowOpacity);
+  left: 0%;
+  position: absolute;
+  top: 25%;
+  transform: rotateX(5deg) rotateY(10deg) rotateZ(-5deg);
+}
+
+.square3 {
+  bottom: 28%;
+  box-shadow: $shadowX $shadowY $shadowBlur rgba(0, 0, 0, $shadowOpacity);
+  position: absolute;
+  right: 18%;
+  transform: rotateX(5deg) rotateY(10deg) rotateZ(-5deg);
+}
+
+.square4 {
+  bottom: 12%;
+  box-shadow: $shadowX $shadowY $shadowBlur rgba(0, 0, 0, $shadowOpacity);
+  position: absolute;
+  right: 30%;
+  transform: rotateX(5deg) rotateY(10deg) rotateZ(-5deg);
+}

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  t1cg-io:
+    build:
+      context: ../
+      dockerfile: ./Docker/Dockerfile-k8s
+    image: t1cg-io-img
+    container_name: t1cg-io
+    ports:
+      - "4001:4001"

@@ -1,0 +1,58 @@
+.parent {
+  height: 800px;
+  perspective: 500px;
+  perspective-origin: 50% -10%;
+  pointer-events: none;
+  position: relative;
+  transform-origin: center;
+  transform-style: flat;
+  width: 100%;
+
+  @media ie-only {
+    height: 400px;
+    margin-top: 400px;
+    perspective: 400px;
+    perspective-origin: 50% -10%;
+  }
+}
+
+.floor {
+  background: white;
+  display: none;
+  height: 2000px;
+  left: 50%;
+  margin-left: -250%;
+  position: absolute;
+  top: -460px;
+  transform: rotateX(90deg) translateY(-970px);
+  width: 500%;
+}
+
+.logo {
+  fill: #1170d8;
+  height: 200px;
+  left: 50%;
+  margin-left: -100px;
+  position: absolute;
+  top: 50%;
+  // transform: translate3d(0px, -600px, 20px);
+  transform: translateX(0px) translateY(-600px);
+  // transform-style: flat;
+  width: 200px;
+}
+
+.logoShadow {
+  backface-visibility: hidden;
+  background: black;
+  border-radius: 100%;
+  box-shadow: 0 0 200px 200px black;
+  height: 120px;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0.15;
+  position: absolute;
+  top: 10%;
+  transform: scaleY(0.08) scaleX(0.6);
+  // transform-style: flat;
+  width: 200px;
+}

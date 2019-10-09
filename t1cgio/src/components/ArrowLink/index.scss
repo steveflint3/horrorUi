@@ -1,0 +1,47 @@
+@value mercury, alto, silver, boulder, coal-mine, klein, light-slate, royal, cobalt, malibu, denim, science, lochmara from '@styles/_colors.scss';
+
+$mercury: 'mercury', mercury;
+$alto: 'alto', alto;
+$silver: 'silver', silver;
+$boulder: 'boulder', boulder;
+$coalMine: 'coalMine', coal-mine;
+$klein: 'klein', klein;
+$lightSlate: 'lightSlate', light-slate;
+$royal: 'royal', royal;
+$cobalt: 'cobalt', cobalt;
+$malibu: 'malibu', malibu;
+$denim: 'denim', denim;
+$science: 'science', science;
+$lochmara: 'lochmara', lochmara;
+
+$theColors: $mercury, $alto, $silver, $boulder, $coalMine, $klein, $lightSlate, $royal, $cobalt, $malibu,
+  $denim, $science, $lochmara;
+
+@mixin colorMix($c) {
+  color: $c;
+  &:before {
+    color: $c;
+  }
+}
+
+@each $theColor in $theColors {
+  .#{nth($theColor, 1)} {
+    @include colorMix(nth($theColor, 2));
+  }
+}
+
+.arrow {
+  display: inline-block;
+  position: relative;
+
+  &:before {
+    bottom: 0%;
+    content: '\002192';
+    left: calc(100% + 5px);
+    position: absolute;
+    transition: left 0.2s;
+  }
+  &:hover:before {
+    left: calc(100% + 10px);
+  }
+}

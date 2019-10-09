@@ -1,0 +1,13 @@
+{
+  "markdown.styles": [".vscode/md-preview.css"],
+  "eslint.enable": true,
+  "tslint.jsEnable": false,
+  "tslint.exclude": ["**/*.js"],
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": true,
+  "scss.lint.validProperties": ["composes"],
+  "cSpell.words": [
+    "commitlint",
+    "stylelint"
+  ]
+}

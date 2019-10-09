@@ -1,0 +1,33 @@
+:global #root {
+  height: 100%;
+}
+
+.parallaxContainer {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+.form {
+  display: block;
+  left: 50%;
+  max-width: 800px;
+  position: fixed;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: calc(100% - 40px);
+  z-index: 100000;
+}
+
+.shade {
+  background: rgba(0, 0, 0, 0.2);
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100000;
+}

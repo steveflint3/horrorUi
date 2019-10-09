@@ -1,0 +1,66 @@
+@value bp-xs, bp-sm, bp-md from '@styles/_breakpoints.scss';
+@value coal-mine from '@styles/_colors.scss';
+
+.advsCnsl {
+  display: grid;
+  grid-template-areas:
+    'text'
+    'checklist';
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 20px;
+
+  @media bp-sm {
+    column-gap: 50px;
+    grid-template-areas: 'checklist text';
+    grid-template-columns: 325px 1fr;
+  }
+}
+
+.checkList,
+.content {
+  display: block;
+  @media bp-sm {
+    display: inline-block;
+    width: 50%;
+  }
+}
+
+.checkList {
+  align-self: center;
+  grid-area: checklist;
+  justify-self: center;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+
+  @media bp-sm {
+    justify-self: left;
+  }
+}
+
+.content {
+  grid-area: text;
+  justify-self: left;
+  margin-bottom: 40px;
+  width: 100%;
+
+  @media bp-sm {
+    align-self: center;
+    margin-bottom: 0;
+  }
+}
+
+.textContent {
+  color: coal-mine;
+  padding: 5px 0;
+}
+
+.button {
+  display: inline-block;
+  margin: 20px auto;
+  @media bp-sm {
+    margin: 20px 0;
+  }
+}

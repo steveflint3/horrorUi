@@ -1,0 +1,91 @@
+@value ie-only from '@styles/_breakpoints.scss';
+
+.parent {
+  height: 600px;
+  margin-bottom: -100px;
+  perspective: 500px;
+  perspective-origin: 50% 15%;
+  position: relative;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  width: 100%;
+  z-index: -1000;
+
+  @media ie-only {
+    height: 400px;
+    margin-top: 100px;
+    perspective: 400px;
+    perspective-origin: 50% -15%;
+  }
+}
+
+.floor {
+  background: white;
+  display: none;
+  height: 2000px;
+  left: 50%;
+  margin-left: -250%;
+  position: absolute;
+  top: -460px;
+  transform: rotateX(90deg) translateY(-970px);
+  width: 500%;
+}
+
+$iconHeight: -200px;
+
+@mixin placeShadow($x, $z) {
+  transform: translate3d(#{$x}px, 0, #{$z}px) rotateX(90deg) scaleY(0.1) scaleX(0.5);
+}
+
+@mixin icon-shadow($opacity, $size) {
+  backface-visibility: hidden;
+  background: black;
+  border-radius: 100%;
+  box-shadow: 0 0 #{$size}px #{$size}px black;
+  height: 100px;
+  left: 50%;
+  margin-left: -100px;
+  opacity: $opacity;
+  position: absolute;
+  top: 50%;
+  transform-style: preserve-3d;
+  width: 200px;
+}
+
+@mixin icon($x, $z) {
+  height: 200px;
+  left: 50%;
+  margin-left: -100px;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(#{$x}px, $iconHeight, #{$z}px);
+  transform-style: preserve-3d;
+  width: 200px;
+}
+
+// Coordinate pairs are [x,z] because all icons have the same Y axis values
+$go: 'go', 350, -100, 0.05, 100;
+$aws: 'aws', -40, -50, 0.07, 100;
+$ansible: 'ansible', 800, -300, 0.1, 100;
+$docker: 'docker', -575, -90, 0.12, 100;
+$jenkins: 'jenkins', 850, -800, 0.1, 100;
+$kube: 'kube', 200, -200, 0.2, 100;
+$mongo: 'mongo', -475, -700, 0.05, 100;
+$newRelic: 'newRelic', -1150, -250, 0.1, 100;
+$node: 'node', -400, -250, 0.07, 100;
+$react: 'react', 650, -90, 0.15, 100;
+$redux: 'redux', 1250, -300, 0.1, 100;
+$terraform: 'terraform', -900, -500, 0.1, 100;
+
+$icons: $go, $aws, $ansible, $docker, $jenkins, $kube, $mongo, $newRelic, $node, $react, $redux, $terraform;
+
+@each $icon in $icons {
+  .#{nth($icon, 1)} {
+    @include icon(nth($icon, 2), nth($icon, 3));
+  }
+
+  .#{nth($icon, 1)}Shadow {
+    @include icon-shadow(nth($icon, 4), nth($icon, 5));
+    @include placeShadow(nth($icon, 2), nth($icon, 3));
+  }
+}

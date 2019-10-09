@@ -1,0 +1,13 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "linterOptions": {"exclude": ["node_modules/**", "dist/**", "**/*.js"]},
+  "rules": {
+    "quotemark": false,
+    "interface-name": false,
+    "align": false,
+    "member-access": false,
+    "arrow-parens": false,
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false
+  }
+}

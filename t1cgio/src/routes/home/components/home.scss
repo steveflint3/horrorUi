@@ -1,0 +1,99 @@
+@value mercury, coal-mine, denim, malibu from '@styles/_colors.scss';
+@value bp-sm, bp-md, ie-only from '@styles/_breakpoints.scss';
+
+.headerContainer {
+  text-align: center;
+  width: 100%;
+}
+
+.name {
+  color: mercury;
+  font-family: t1cg, Arial, Helvetica, sans-serif;
+  font-size: 35px;
+}
+
+.slogan {
+  color: mercury;
+  font-family: t1cg, Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  margin-top: -5px;
+}
+
+.button {
+  margin-top: 50px;
+}
+
+.colorCoalMine {
+  color: coal-mine;
+}
+
+.wantBetterResults {
+  max-width: 800px;
+  width: 100%;
+}
+
+.section {
+  margin: 0 auto;
+  max-width: 1080px;
+  width: 100%;
+}
+
+.quadDisplay {
+  display: grid;
+  grid-template-areas:
+    'one'
+    'two'
+    'three'
+    'four';
+  grid-template-columns: 1fr;
+  margin: 60px 0;
+  padding: 20px;
+  row-gap: 60px;
+
+  @media bp-sm {
+    column-gap: 100px;
+    grid-template-areas:
+      'one two'
+      'three four';
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media bp-md {
+    column-gap: 200px;
+  }
+
+  & > div {
+    justify-self: center;
+
+    @media ie-only {
+      padding: 30px 0;
+    }
+  }
+
+  & > div:nth-child(1) {
+    grid-area: one;
+  }
+
+  & > div:nth-child(2) {
+    grid-area: two;
+  }
+
+  & > div:nth-child(3) {
+    grid-area: three;
+  }
+
+  & > div:nth-child(4) {
+    grid-area: four;
+  }
+}
+
+.stayCurrent {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+  width: 100%;
+}
+
+.seeMore {
+  margin-top: 50px;
+}

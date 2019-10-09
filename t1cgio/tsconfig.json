@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es3",
+    "jsx": "react",
+    "allowJs": true,
+    "rootDir": ".",
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es2015", "dom"],
+    "baseUrl": "./src",
+    "paths": {
+      "@routes/*": ["./routes/*"],
+      "@components/*": ["./components/*"],
+      "@context/*": ["./global/context/*"],
+      "@styles/*": ["./global/sass/*"],
+      "@assets/*": ["./assets/*"],
+      "@util/*": ["./global/util/*"]
+    }
+  },
+  "exclude": ["node_modules", "**/*.js"]
+}
