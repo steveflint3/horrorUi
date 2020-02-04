@@ -1,9 +1,9 @@
 import React from 'react';
 
 const TodoItem = props => (
-  props.context === 'all' ||
-  (props.context === 'incomplete' && !props.isCompleted) ||
-  (props.context === 'complete' && props.isCompleted) ? (
+  props.status === 'all' ||
+  (props.status === 'incomplete' && !props.isCompleted) ||
+  (props.status === 'complete' && props.isCompleted) ? (
     <div className={`todo ${props.isCompleted && 'todo-is-completed'}`}>
       <div className={'checkbox'} onClick={props.onClick}>
         {props.isCompleted && (

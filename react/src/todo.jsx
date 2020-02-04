@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import TodoItem from './todoItem.jsx';
-import {ListViewContext} from './listViewContext.jsx';
 import {todoList} from './todoList.js';
 
 const Todo = props => {
@@ -54,48 +53,44 @@ const Todo = props => {
   }
 
   return (
-    <ListViewContext.Consumer>
-      {context => (
-        <>
-          <ul className="todo-list-nav">
-            <li 
-              className={context === 'all' ? 'active' : ''}
-              onClick={props.toggleListView}
-            >
-              All
-            </li>
-            <li 
-              className={context === 'complete' ? 'active' : ''}
-              onClick={props.toggleListView}
-            >
-              Complete
-            </li>
-            <li 
-              className={context === 'incomplete' ? 'active' : ''}
-              onClick={props.toggleListView}
-            >
-              Incomplete
-            </li>
-          </ul>
-          <form className="todo-list">
-            <h1><b>Todosies {context.toUpperCase()}</b></h1>
-            <ul>
-              {todos.map((todo, i) => (
-                <TodoItem
-                  key={i}
-                  isCompleted={todo.isCompleted}
-                  content={todo.content}
-                  context={context}
-                  onClick={() => toggleTodoCompleteAtIndex(i)}
-                  onKeyDown={e => handleKeyDown(e, i)}
-                  onChange={e => updateTodoAtIndex(e, i)}
-                />
-              ))}
-            </ul>
-          </form>
-        </>
-      )}
-    </ListViewContext.Consumer>
+    <>
+      <ul className="todo-list-nav">
+        <li 
+          className={props.status === 'all' ? 'active' : ''}
+          onClick={props.toggleStatusView}
+        >
+          All
+        </li>
+        <li 
+          className={props.status === 'complete' ? 'active' : ''}
+          onClick={props.toggleStatusView}
+        >
+          Complete
+        </li>
+        <li 
+          className={props.status === 'incomplete' ? 'active' : ''}
+          onClick={props.toggleStatusView}
+        >
+          Incomplete
+        </li>
+      </ul>
+      <form className="todo-list">
+        <h1><b>Todosies {props.status.toUpperCase()}</b></h1>
+        <ul>
+          {todos.map((todo, i) => (
+            <TodoItem
+              key={i}
+              isCompleted={todo.isCompleted}
+              content={todo.content}
+              status={props.status}
+              onClick={() => toggleTodoCompleteAtIndex(i)}
+              onKeyDown={e => handleKeyDown(e, i)}
+              onChange={e => updateTodoAtIndex(e, i)}
+            />
+          ))}
+        </ul>
+      </form>
+    </>
   );
 };
 
