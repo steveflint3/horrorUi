@@ -5,7 +5,7 @@ import * as actions from './login/actions';
 
 const UserHome = props =>   {
   if (!props.user.loggedIn) {
-    props.changeView('login');
+    props.setView('login');
     return (null);
   } 
   else return (
