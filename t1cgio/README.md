@@ -14,7 +14,7 @@ To clone copy and run the project:
 # Clone this repository
 git clone https://github.com/t1cg/training-ui.git
 # Copy buggy t1cgIo into your repo
-cp training-ui/t1cgio your-repo-directory/t1cgio-fix
+cp -R training-ui/t1cgio your-repo-directory/t1cgio-fix
 # Install required npm packages
 cd your-repo-directory/t1cgio-fix
 npm i
