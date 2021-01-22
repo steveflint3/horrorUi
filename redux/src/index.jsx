@@ -3,8 +3,8 @@ import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import store from './rootRedux/store';
 
-import Login from './login';
-import UserHome from './userHome';
+import Login from './login/login';
+import UserHome from './user/user';
 
 const Index = () => {
   

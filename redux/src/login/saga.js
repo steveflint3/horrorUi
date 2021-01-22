@@ -5,7 +5,7 @@ import * as actionType from './actionTypes';
 import {users} from './users.js';
 
 export function* loggingIn() {
-  const stateUser = yield select(state => state.user);
+  const stateUser = yield select(state => state.login);
   const sessionUser = users.filter(user => user.username === stateUser.username);
   if (sessionUser[0] === undefined) {
     yield put(actions.loginUserFailure());
@@ -18,7 +18,7 @@ export function* loggingIn() {
       yield delay(1500);
       yield put(actions.loginReset());
     } else {
-      yield put(actions.loginUserSuccess());
+      yield put(actions.loginUserSuccess(sessionUser[0].username));
     }
   }
 }

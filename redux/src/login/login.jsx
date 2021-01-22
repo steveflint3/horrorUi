@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import * as actions from './login/actions';
+import * as actions from './actions';
 
 const Login = props => {
   if (props.user.loggedIn) {
@@ -32,7 +32,7 @@ const Login = props => {
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.login
 });
 
 const mapDispatchToProps = dispatch => ({

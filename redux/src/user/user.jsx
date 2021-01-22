@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import * as actions from './login/actions';
+import * as loginActions from '../login/actions';
 
 const UserHome = props =>   {
-  if (!props.user.loggedIn) {
+  if (!props.user.username) {
     props.setView('login');
     return (null);
   } 
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   logOut: () => {
-    return dispatch(actions.loginReset());
+    return dispatch(loginActions.loginReset());
   },
 });
 

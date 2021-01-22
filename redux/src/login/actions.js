@@ -10,8 +10,9 @@ export const loginSubmit = () => ({
   type: actionType.LOGIN_SUBMIT
 });
 
-export const loginUserSuccess = () => ({
-  type: actionType.LOGIN_SUCCESS
+export const loginUserSuccess = (username) => ({
+  type: actionType.LOGIN_SUCCESS,
+  username
 });
 
 export const loginUserFailure = () => ({
