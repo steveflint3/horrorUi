@@ -11,7 +11,6 @@ const Login = props => {
 
   const loginInputChange = (e) => {
     e.preventDefault();
-    console.log(e)
     return dispatch(actions.loginInputChange(e));
   }
 
