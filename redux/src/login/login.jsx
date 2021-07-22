@@ -1,10 +1,26 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
+import * as select from './selector';
 import * as actions from './actions';
 
 const Login = props => {
-  if (props.user.loggedIn) {
+
+  const dispatch = useDispatch();
+  const login = useSelector(select.login);
+
+  const loginInputChange = (e) => {
+    e.preventDefault();
+    console.log(e)
+    return dispatch(actions.loginInputChange(e));
+  }
+
+  const loginSubmit = (e) => {
+    e.preventDefault();
+    return dispatch(actions.loginSubmit());
+  }
+
+  if (login.loggedIn) {
     props.setView('user');
     return (null);
   } 
@@ -12,41 +28,23 @@ const Login = props => {
     <>
     <div className="login">
       <h1>Login</h1>
-      <form onSubmit={props.loginSubmit}>
+      <form onSubmit={loginSubmit}>
         <div className="inputContainer">
-          <input onChange={props.loginInputChange} type="text" id="username" value={props.user.username} required />
+          <input onChange={loginInputChange} type="text" id="username" value={login.username} required />
           <label>Username</label>
         </div>
         <div className="inputContainer">
-          <input onChange={props.loginInputChange} type="password" id="password" value={props.user.password} required />
+          <input onChange={loginInputChange} type="password" id="password" value={login.password} required />
           <label>Password</label>
         </div>
         <input type="submit" value="Login" />
       </form>
     </div>
-    {props.user.loginError &&
+    {login.loginError &&
       <p style={{color:'indianred', textAlign: 'center'}}>Incorrect Username or Password</p>
     }
     </>
   );
 };
 
-const mapStateToProps = state => ({
-  user: state.login
-});
-
-const mapDispatchToProps = dispatch => ({
-  loginInputChange: (e) => {
-    e.preventDefault();
-    return dispatch(actions.loginInputChange(e));
-  },
-  loginSubmit: (e) => {
-    e.preventDefault();
-    return dispatch(actions.loginSubmit());
-  },
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
+export default Login;

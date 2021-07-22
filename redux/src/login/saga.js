@@ -2,7 +2,7 @@ import {put, takeEvery, all, call, select, delay} from 'redux-saga/effects';
 
 import * as actions from './actions';
 import * as actionType from './actionTypes';
-import {users} from './users.js';
+import {users} from '../users.js';
 
 export function* loggingIn() {
   const stateUser = yield select(state => state.login);
