@@ -1,0 +1,30 @@
+version: "3"
+services:
+  app:
+    container_name: docker-node-mongo
+    restart: always
+    volumes:
+      # - ./setup.js:/docker-entrypoint-initdb.d/setup.js
+      - mongo_training:/data/db
+    build:
+      context: ../api
+      dockerfile: ../Docker/Dockerfile.api.dev
+    ports:
+      - '80:8081'
+  mongo:
+    container_name: mongo
+    image: mongo
+    command: mongod --port 2717
+    ports:
+      - 2717:27017
+  # react_training:
+  #   container_name: react_training
+  #   build:
+  #     context: ../ui
+  #     dockerfile: ../Docker/Dockerfile.ui.dev
+  #   ports: 
+  #     - '3000:3000'
+  #   stdin_open: true
+  #   tty: true
+volumes:
+  mongo_training:
