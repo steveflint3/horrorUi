@@ -9,26 +9,35 @@ const Movies = () => {
   const movies = useAppSelector(selectMovies);
 
   const [title, setTitle] = React.useState('');
-  const [year, setYear] = React.useState('');
+  const [release_date, setReleaseDate] = React.useState('');
+  const [overview, setOverview] = React.useState('');
 
   return (
     <>
       <button onClick={() => dispatch(getMovies())}>Get Movies</button>
+      <h1>Movie</h1>
 
-      <ul>
-        {movies.map((p, i) => (
-          <>
-            <h1>Movie</h1>
-            <li key={i}>{p.title}</li>
-            <li key={i}>{p.year}</li>
-          </>
-        ))}
-      </ul>
       <div>
         <input placeholder="enter title" onChange={(e) => setTitle(e.target.value)} />
-        <input placeholder="enter year" onChange={(e) => setYear(e.target.value)} />
-        <button onClick={() => dispatch(addMovie({ title, year }))}>Add movie</button>
+        <input placeholder="enter release date" onChange={(e) => setReleaseDate(e.target.value)} />
+        <input placeholder="enter overview" onChange={(e) => setOverview(e.target.value)} />
+        <button onClick={() => dispatch(addMovie({ title, release_date, overview }))}>Add movie</button>
+        <p>
+          movie added will appear after adding and clicking Get Movies again. Added movies might appear at the
+          bottom or top of list.
+        </p>
       </div>
+
+      {movies.map((p, i) => (
+        <ul key={i}>
+          <li>
+            <b>{p.title}</b>
+          </li>
+          <li>{p.release_date}</li>
+          <li>{p.overview}</li>
+          <br />
+        </ul>
+      ))}
     </>
   );
 };

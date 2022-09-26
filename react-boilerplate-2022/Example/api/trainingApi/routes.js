@@ -11,7 +11,11 @@ router
   })
 
   .post('/movies/post', async (req, res) => {
-    const result = await movies.insertMany({ title: req.body.title, year: req.body.year });
+    const result = await movies.insertMany({
+      title: req.body.title,
+      release_date: req.body.release_date,
+      overview: req.body.overview,
+    });
 
     res.send(result);
   });
