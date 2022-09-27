@@ -1,10 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getMovies = createAsyncThunk('movies/getMovies', async () => {
-  // const res = await fetch('http://localhost:80/api/movies/').then((data) => data.json());
-
-  // return res;
-
   try {
     const res = await fetch('http://localhost:80/api/movies/');
     const data = await res.json();
