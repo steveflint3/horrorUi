@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 
 var url = 'mongodb://localhost:27031';
 
-(async () => {
+export const load = async () => {
   try {
     const res = await fetch(
       'https://api.themoviedb.org/3/discover/movie?api_key=ecee8965df3010e0137f48bdebe10470&with_genres=27'
@@ -18,7 +18,7 @@ var url = 'mongodb://localhost:27031';
   } catch (err) {
     console.log(err.message); //can be console.error
   }
-})();
+};
 
 const transform = (movies) => {
   const cleanedMoviesArray = [];
@@ -46,3 +46,5 @@ const insertHorrorMovies = (movies) => {
     });
   });
 };
+
+load();

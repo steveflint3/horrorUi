@@ -8,3 +8,7 @@ run command `npm start`
 
 ETL: navigate to Example/api/etl
 run command `node extract-transform-load`
+
+Schedule ETL: navigate to Example/api/etl
+run command `node schedule-extract-transform-load`
+The job is set to run every sunday at 4pm
