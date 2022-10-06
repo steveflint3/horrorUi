@@ -1,30 +1,33 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getMovies = createAsyncThunk('movies/getMovies', async () => {
-  try {
-    const res = await fetch('http://localhost:80/api/movies/');
-    const data = await res.json();
+  const response = await fetch('http://localhost:80/api/movies');
 
-    return data;
-  } catch (err) {
-    // You can choose to use the message attached to err or write a custom error
-    return err;
+  if (!response.ok) {
+    const error = await response.json();
+    throw error;
   }
+
+  const data = await response.json();
+
+  return data;
 });
 
 export const addMovie = createAsyncThunk('movies/addMovie', async (movie) => {
-  try {
-    const response = await fetch('http://localhost:80/api/movies/post', {
-      method: 'POST',
-      body: JSON.stringify(movie),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
+  const response = await fetch('http://localhost:80/api/movies/post', {
+    method: 'POST',
+    body: JSON.stringify(movie),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-    return data;
-  } catch (err) {
-    return err;
+  if (!response.ok) {
+    const error = await response.json();
+    throw error;
   }
+
+  const data = await response.json();
+
+  return data;
 });
