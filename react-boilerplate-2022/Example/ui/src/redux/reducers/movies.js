@@ -25,7 +25,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.movies = action.payload;
     })
     .addCase(actions.getMovies.rejected, (state, action) => {
-      state.getMoviesRequest = { ...initialState.getMoviesRequest, error: action.payload };
+      state.getMoviesRequest = { ...initialState.getMoviesRequest, error: action.error.message };
     })
     .addCase(actions.addMovie.pending, (state) => {
       state.addMovieRequest = { ...initialState.addMovieRequest, fetching: true };
@@ -34,7 +34,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.addMovieRequest = { ...initialState.addMovieRequest, success: true };
     })
     .addCase(actions.addMovie.rejected, (state, action) => {
-      state.addMovieRequest = { ...initialState.addMovieRequest, error: action.payload };
+      state.addMovieRequest = { ...initialState.addMovieRequest, error: action.error.message };
     });
 });
 
