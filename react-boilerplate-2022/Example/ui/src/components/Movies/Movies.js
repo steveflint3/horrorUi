@@ -18,7 +18,6 @@ const Movies = () => {
 
   return (
     <>
-      {/* <button onClick={() => dispatch(getMovies())}>Get Movies</button> */}
       <h1>Movies</h1>
 
       <div>
