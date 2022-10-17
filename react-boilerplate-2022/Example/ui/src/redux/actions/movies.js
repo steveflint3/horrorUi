@@ -29,5 +29,5 @@ export const addMovie = createAsyncThunk('movies/addMovie', async (movie) => {
 
   const data = await response.json();
 
-  return data;
+  return data[0];
 });

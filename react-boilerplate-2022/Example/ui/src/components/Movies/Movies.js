@@ -12,20 +12,21 @@ const Movies = () => {
   const [release_date, setReleaseDate] = React.useState('');
   const [overview, setOverview] = React.useState('');
 
+  React.useEffect(() => {
+    dispatch(getMovies());
+  }, []);
+
   return (
     <>
-      <button onClick={() => dispatch(getMovies())}>Get Movies</button>
-      <h1>Movie</h1>
+      {/* <button onClick={() => dispatch(getMovies())}>Get Movies</button> */}
+      <h1>Movies</h1>
 
       <div>
         <input placeholder="enter title" onChange={(e) => setTitle(e.target.value)} />
         <input placeholder="enter release date" onChange={(e) => setReleaseDate(e.target.value)} />
         <input placeholder="enter overview" onChange={(e) => setOverview(e.target.value)} />
         <button onClick={() => dispatch(addMovie({ title, release_date, overview }))}>Add movie</button>
-        <p>
-          movie added will appear after adding and clicking Get Movies again. Added movies might appear at the
-          bottom or top of list.
-        </p>
+        <p>Added movies will appear at the bottom of the list.</p>
       </div>
 
       {movies.map((p, i) => (
