@@ -32,6 +32,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(actions.addMovie.fulfilled, (state, action) => {
       state.addMovieRequest = { ...initialState.addMovieRequest, success: true };
+      state.movies.push(action.payload);
     })
     .addCase(actions.addMovie.rejected, (state, action) => {
       state.addMovieRequest = { ...initialState.addMovieRequest, error: action.error.message };
