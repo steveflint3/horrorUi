@@ -23,12 +23,6 @@ describe('Movies Reducer', () => {
     });
 
     it('Should properly handle fulfilled action', () => {
-      const exampleMovie = {
-        title: 'title',
-        release_date: 'release_date',
-        overview: 'overview',
-      };
-
       const getMoviesRequest = { ...initialState.getMoviesRequest, success: true };
 
       const expectedState = produce(initialState, (draft) => {
