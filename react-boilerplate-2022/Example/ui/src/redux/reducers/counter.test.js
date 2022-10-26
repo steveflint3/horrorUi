@@ -18,5 +18,6 @@ describe('Counter Reducer', () => {
     });
 
     const nextState = reducer(initialState, clearCount());
+    expect(nextState).toEqual(expectedState);
   });
 });
