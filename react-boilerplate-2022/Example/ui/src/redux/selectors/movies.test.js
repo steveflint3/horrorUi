@@ -4,8 +4,6 @@ import { store } from '../store';
 
 import * as selectors from './movies';
 
-import { useAppSelector } from '../hooks';
-
 describe('Movie selectors', () => {
   it('Should return add movie request status', () => {
     const state = produce(store.getState(), (draft) => {

@@ -9,8 +9,9 @@ router
     try {
       const hm = await movies.find();
       res.send(hm);
-    } catch {
-      res.status(404).send({ error: 'Cannot Find Movies!' });
+    } catch (err) {
+      console.log('ERROR:', err.message);
+      res.status(404).send({ error: 'Failed to find movies!' });
     }
   })
   // Post a movie
@@ -21,10 +22,10 @@ router
         release_date: req.body.release_date,
         overview: req.body.overview,
       });
-
       res.send(result);
-    } catch {
-      res.status(404).send({ error: 'Failed to post Movie!' });
+    } catch (err) {
+      console.log('ERROR:', err.message);
+      res.status(403).send({ error: 'Failed to post movie!' });
     }
   });
 
