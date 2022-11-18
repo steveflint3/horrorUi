@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 
 var url = 'mongodb://localhost:27031';
 
-export const load = async () => {
+export const extract = async () => {
   try {
     const res = await fetch(
       'https://api.themoviedb.org/3/discover/movie?api_key=ecee8965df3010e0137f48bdebe10470&with_genres=27'
@@ -24,6 +24,7 @@ const transform = (movies) => {
   const cleanedMoviesArray = [];
   for (let i = 0; i < movies.length; i++) {
     const movieObject = {
+      id: movies[i].id,
       title: movies[i].title,
       release_date: movies[i].release_date,
       overview: movies[i].overview,
@@ -31,20 +32,32 @@ const transform = (movies) => {
 
     cleanedMoviesArray.push(movieObject);
   }
-  insertHorrorMovies(cleanedMoviesArray);
+  load(cleanedMoviesArray);
 };
 
-const insertHorrorMovies = (movies) => {
-  MongoClient.connect(url, function (err, db) {
+const load = (movies) => {
+  MongoClient.connect(url, async function (err, db) {
     if (err) throw err;
     var dbo = db.db('movies');
 
-    dbo.collection('horrorMovies').insertMany(movies, function (err, res) {
-      if (err) throw err;
-      console.log('movies inserted');
-      db.close();
-    });
+    for (let i = 0; i < movies.length; i++) {
+      const bulk = dbo.collection('horrorMovies').initializeUnorderedBulkOp();
+      bulk
+        .find({ id: movies[i].id })
+        .upsert()
+        .update({
+          $setOnInsert: {
+            id: movies[i].id,
+            title: movies[i].title,
+            release_date: movies[i].release_date,
+            overview: movies[i].overview,
+          },
+        });
+      await bulk.execute();
+    }
+
+    db.close();
   });
 };
 
-load();
+extract();
