@@ -3,14 +3,14 @@ services:
   app:
     container_name: docker-node-mongo
     restart: always
-    volumes:
-      # - ./setup.js:/docker-entrypoint-initdb.d/setup.js
-      - mongo_training:/data/db
+  
     build:
       context: ../api
       dockerfile: ../Docker/Dockerfile.api.dev
     ports:
       - '80:8081'
+    volumes:
+      - ../api:/usr/src/app
   mongo:
     container_name: mongo
     image: mongo
@@ -19,7 +19,9 @@ services:
     # map the port started with mongo above to new port on your (host) computer
     ports:
       - 27031:27017
-   
+    volumes:
+    # - ./setup.js:/docker-entrypoint-initdb.d/setup.js
+      - mongo_training:/data/db
   # react_training:
   #   container_name: react_training
   #   build:
