@@ -9,9 +9,8 @@ router
     try {
       const hm = await movies.find();
       res.send(hm);
-    } catch (err) {
-      console.log('ERROR:', err.message);
-      res.status(404).send({ error: 'Failed to find movies!' });
+    } catch {
+      res.status(404).send({ message: 'Failed to find movies!' });
     }
   })
   // Post a movie
@@ -23,9 +22,8 @@ router
         overview: req.body.overview,
       });
       res.send(result);
-    } catch (err) {
-      console.log('ERROR:', err.message);
-      res.status(403).send({ error: 'Failed to post movie!' });
+    } catch {
+      res.status(403).send({ message: 'Failed to post movie!' });
     }
   });
 
