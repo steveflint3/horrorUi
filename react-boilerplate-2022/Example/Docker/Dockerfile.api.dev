@@ -1,6 +1,8 @@
 FROM node:latest
+# Working directory path in container
 WORKDIR /usr/src/app
-COPY ../ .
+# Copies files from local computer (first path, which is relative to context set) to location in container (second path) relative to workdir set above
+COPY . .
 RUN npm i
 EXPOSE 8081
 CMD ["npm", "run", "api-start"]
