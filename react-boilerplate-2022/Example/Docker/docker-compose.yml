@@ -5,6 +5,9 @@ services:
     restart: always
   
     build:
+    # creates context for which dockerfile path below is run and context
+    # for the first path in the copy command, the place from local machine where
+    # source files are copied from.
       context: ../api
       dockerfile: ../Docker/Dockerfile.api.dev
     ports:
@@ -22,14 +25,19 @@ services:
     volumes:
     # - ./setup.js:/docker-entrypoint-initdb.d/setup.js
       - mongo_training:/data/db
-  # react_training:
-  #   container_name: react_training
-  #   build:
-  #     context: ../ui
-  #     dockerfile: ../Docker/Dockerfile.ui.dev
-  #   ports: 
-  #     - '3000:3000'
-  #   stdin_open: true
-  #   tty: true
+  react_training:
+    container_name: react_training
+    build:
+       # creates context for which dockerfile path below is run and context
+       # for the first path in the copy command, the place from local machine where
+       # source files are copied from.
+      context: ../ui
+      dockerfile: ../Docker/Dockerfile.ui.dev
+    ports: 
+      - '3000:3000'
+    volumes:
+      - ../ui:/app
+    stdin_open: true
+    tty: true
 volumes:
   mongo_training:

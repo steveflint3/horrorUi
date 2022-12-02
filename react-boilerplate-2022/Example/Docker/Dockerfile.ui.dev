@@ -1,6 +1,8 @@
 FROM node:latest
+# Working directory path in container
 WORKDIR /app
-COPY ../ .
+# Copies files from local computer (first path, which is relative to context set) to location in container (second path) relative to workdir set above
+COPY . .
 RUN npm install
 EXPOSE 3000
 CMD ["npm", "start"]
