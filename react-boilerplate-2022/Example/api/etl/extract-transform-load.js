@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { MongoClient } from 'mongodb';
 
-var url = 'mongodb://localhost:27031';
+var url = `mongodb://${process.env.MOVIE_API_USERNAME}:${process.env.MOVIE_API_PASSWORD}@${process.env.MOVIE_ETL_URI}`;
 
 export const extract = async () => {
   try {

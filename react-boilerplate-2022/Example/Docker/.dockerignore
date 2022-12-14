@@ -1,4 +1,7 @@
 ./node_modules
-Dockerfile
+Dockerfile.api.dev
+Dockerfile.ui.dev
 .dockerignore
 docker-compose.yml
+Dockerfile.ui.prod
+DockerUiProd
