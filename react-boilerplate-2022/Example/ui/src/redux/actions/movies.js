@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getMovies = createAsyncThunk('movies/getMovies', async () => {
-  const response = await fetch('http://localhost:80/api/movies');
+  const response = await fetch(`http://${process.env.MOVIE_UI_URI}/api/movies`);
 
   if (!response.ok) {
     const error = await response.json();
@@ -14,7 +14,7 @@ export const getMovies = createAsyncThunk('movies/getMovies', async () => {
 });
 
 export const addMovie = createAsyncThunk('movies/addMovie', async (movie) => {
-  const response = await fetch('http://localhost:80/api/movies/post', {
+  const response = await fetch(`http://${process.env.MOVIE_UI_URI}/api/movies/post`, {
     method: 'POST',
     body: JSON.stringify(movie),
     headers: {

@@ -9,22 +9,34 @@ services:
     # for the first path in the copy command, the place from local machine where
     # source files are copied from.
       context: ../api
-      dockerfile: ../Docker/Dockerfile.api.dev
+      dockerfile: ../Docker/Dockerfile.api
     ports:
       - '80:8081'
     volumes:
       - ../api:/usr/src/app
+    environment:
+      - MOVIE_API_URI=mongodb://mongo:27017/movies
+      - MOVIE_API_USERNAME
+      - MOVIE_API_PASSWORD
   mongo:
     container_name: mongo
     image: mongo
+    build:
+      # creates context for which dockerfile path below is run and context
+      # for the first path in the copy command, the place from local machine where
+      # source files are copied from.
+      context: .
+      dockerfile: ../Docker/Dockerfile.mongo
     # start mongo on this port
     command: mongod --port 27017
     # map the port started with mongo above to new port on your (host) computer
     ports:
       - 27031:27017
     volumes:
-    # - ./setup.js:/docker-entrypoint-initdb.d/setup.js
       - mongo_training:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
   react_training:
     container_name: react_training
     build:
@@ -37,6 +49,8 @@ services:
       - '3000:3000'
     volumes:
       - ../ui:/app
+    environment:
+      - MOVIE_UI_URI
     stdin_open: true
     tty: true
 volumes:

@@ -10,10 +10,11 @@ import app from './index.js';
 // of the container network, as we do here, you use port 27017. To connect to mongo
 // from host machine outside of the container network, use 27031.
 // - connection url from inside container => mongodb://mongo:27017/movies
-// - connection url from outside container => mongodb://localhost:27031
+// - connection url from outside container => mongodb://localhost:27031/movies
 mongoose
-  .connect('mongodb://mongo:27017/movies', {
-    useNewUrlParser: true,
+  .connect(process.env.MOVIE_API_URI, {
+    user: process.env.MOVIE_API_USERNAME,
+    pass: process.env.MOVIE_API_PASSWORD,
   })
   .catch((err) => console.log(err));
 mongoose.connection.once('connected', () => console.log('\x1b[36mmovie app connected to mongo\x1b[0m'));
