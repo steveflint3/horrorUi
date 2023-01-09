@@ -23,7 +23,7 @@ router
       });
       res.send(result);
     } catch {
-      res.status(403).send({ message: 'Failed to post movie!' });
+      res.status(400).send({ message: 'Failed to post movie!' });
     }
   });
 
