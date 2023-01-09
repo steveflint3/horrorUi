@@ -41,7 +41,7 @@ const load = (movies) => {
     var dbo = db.db('movies');
 
     for (let i = 0; i < movies.length; i++) {
-      const bulk = dbo.collection('horrorMovies').initializeUnorderedBulkOp();
+      const bulk = dbo.collection('horrormovies').initializeUnorderedBulkOp();
       bulk
         .find({ id: movies[i].id })
         .upsert()

@@ -6,5 +6,5 @@ const schema = mongoose.Schema({
   overview: String,
 });
 
-const modelCall = mongoose.model('movies', schema, 'horrorMovies');
+const modelCall = mongoose.model('horrormovies', schema);
 export default modelCall;
