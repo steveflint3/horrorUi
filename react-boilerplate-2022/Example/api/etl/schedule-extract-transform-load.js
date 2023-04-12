@@ -1,5 +1,5 @@
 import schedule from 'node-schedule';
-import { load } from './extract-transform-load.js';
+import { extract } from './extract-transform-load.js';
 
 const rule = new schedule.RecurrenceRule();
 rule.hour = 16;
