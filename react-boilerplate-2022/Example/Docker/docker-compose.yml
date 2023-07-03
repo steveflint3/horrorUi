@@ -20,7 +20,6 @@ services:
       - MOVIE_API_PASSWORD
   mongo:
     container_name: mongo
-    image: mongo
     build:
       # creates context for which dockerfile path below is run and context
       # for the first path in the copy command, the place from local machine where
