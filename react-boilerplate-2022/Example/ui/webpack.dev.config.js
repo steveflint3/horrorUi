@@ -11,6 +11,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html', // to import index.html file inside index.js
+      inject: true, // inject script tag (bundle.js) into index.html
     }),
     new webpack.EnvironmentPlugin({
       MOVIE_UI_URI: process.env.MOVIE_UI_URI,
